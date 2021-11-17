@@ -33,3 +33,5 @@ $donnees = $post->showPost($query);
 
 $template = 'view/indexView';
 include 'view/layoutView.phtml';
+
+//plop
