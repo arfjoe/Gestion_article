@@ -1,0 +1,21 @@
+<?php
+require_once '../controller/Controller.php';
+$control = new Controller();
+?>
+<!-- Page d'édition d'un article -->
+<h2><i class="fa fa-pencil"></i> Editer un Commentaire</h2>
+
+<!-- Formulaire de mise à jour d'un article -->
+<form class="ui form" name="myForms" action="../controller/editCommentController.php?id=<?= $donnees['id']; ?>" method="post">
+    <!-- Utilisation d'un champ caché pour spécifier à quel article rattacher le commentaire -->
+    <input type="hidden" name="commentId" value="<?= intval($donnees['id']) ?>">
+
+    <fieldset>
+        <legend><i class="fa fa-sticky-note-o"></i>Mettre à jour votre Commentaire</legend>
+        <article class="ui form">
+            <textarea id="editcomcontent" name="editcomcontent" rows="5"><?= $donnees['content'] ?></textarea>
+        </article>
+        <button class="ui button" onclick="return Empty()" type="submit" value>Enregistrer</button>
+        <a id="annuler" class="negative ui button" href="../index.php">Annuler</a>
+    </fieldset>
+</form>

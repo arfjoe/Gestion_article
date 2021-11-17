@@ -1,0 +1,124 @@
+<article class="menu_admin">
+    <nav class="col-md-2 py-3 bg-dark">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item"><a id="click1" href="#"><i class="fas fa-newspaper" aria-hidden="true"></i> Gestion des articles</a></li>
+            <li class="nav-item"><a id="click2" href="#"><i class="fas fa-tags" aria-hidden="true"></i> Gestion des catégories</a></li>
+            <li class="nav-item"><a id="click3" href="#"> <i class="fas fa-users" aria-hidden="true"></i>Gestion des auteurs</a></li>
+        </ul>
+    </nav>
+</article>
+
+<?= $_SERVER['HTTP_REFERER']?>
+
+<article id="authors" class="formAdmin">
+    <h3>Liste de tous les Utilisateurs:</h3>
+    <table id='tab' class="display table table-striped">
+        <caption>Liste des utilisateurs classés par ordre chronologique inversé.<strong><?php if (count($donnees) > 0) : ?> Il y a en tout : (<?= count($donnees); ?>) Utilisateurs<?php endif; ?></strong></caption>
+        <thead class="thead-dark">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Pseudo</th>
+                <th>E-mail</th>
+                <th>Opérations</th>
+            </tr>
+            </thead>
+            <?php foreach ($donnees as $value) : ?>
+            <tr>
+                <td><?= $value['firstname'] ?></td>
+                <td><?= $value["lastname"]; ?></td>
+                <td><?= $value["pseudo"]; ?></td>
+                <td><?= $value["email"]; ?></td>
+                <td><a  href="../model/deleteModel.php?table=authors&id=<?= intval($value['id']) ?>"><i class="fa fa-trash"></i>supprimer</a></td>
+            </tr>
+            <?php endforeach; ?>
+    </table>
+    <aside class="displayresp">
+    <?php foreach ($donnees as $value) : ?>
+        <div class="borderunder">
+            <p><?= $value['firstname'] ?></p>
+            <p><?= $value["lastname"]; ?></p>
+            <p><?= $value["pseudo"]; ?></p>
+            <p><?= $value["email"]; ?></p>
+            <p><a  href="../model/deleteModel.php?table=authors&id=<?= intval($value['id']) ?>"><i class="fa fa-trash"></i>supprimer</a></p>
+        </div>
+        <?php endforeach; ?>
+    </aside>
+</article>
+<article id="posts">
+    <h3>Liste de tous les Articles:</h3>
+    <article>
+        <p><a href="../controller/addArticleController.php" id="open" class="button" type="button">Créer un article</a></p>
+       <!--  <div id="overlay" class="overlay"></div> -->
+        <!-- <div id="modal" class="modal"> -->
+            
+            <!-- <p><button id="close" class="button" type="button">Fermer</button></p> -->
+        <!-- </div> -->
+</article>
+<table class="table table-striped">
+    <caption>Liste des posts classés par ordre chronologique inversé<strong><?php if (count($donnees2) > 0) : ?>Il y a en tout : (<?= count($donnees2); ?>) articles<?php endif; ?></strong></caption>
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Création</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Catégorie</th>
+                <th>Opérations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($donnees2 as $post) : ?>
+                <tr>
+                    <td>
+                        <?=($post['id']); ?>
+                    </td>
+                    <td>
+                        <?=($post['created_at_fr']); ?>
+                    </td>
+                    <td>
+                        <?=($post['title']); ?>
+                    </td>
+                    <td>
+                        <?=($post['firstname']); ?>
+                        <?=($post['lastname']); ?>
+                    </td>
+                    <td>
+                        <?=($post['name']); ?>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" title="Détails du post" href="../controller/commentController.php?id=<?= intval($post['id']) ?>">
+                            <i class="fa fa-search-plus" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-warning" title="Modifier le post" id="edit" href="../controller/editSubjectController.php?id=<?= intval($post['id'])?>">
+                            <i class="fa fa-pen-nib" aria-hidden="true"></i>
+                        </a>
+                        <button id="remove" href="../model/deleteModel.php?table=posts&id=<?= intval($post['id']) ?>" class="btn btn-danger" title="Supprimer le post" data-toggle="modal" data-target="#modal-delete-<?= $post['id'] ?>" >
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="modal-delete-<?= intval($post['id']) ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Voulez-vous supprimer ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<a class="accueil" href="../index.php">Retour au Forum</a>

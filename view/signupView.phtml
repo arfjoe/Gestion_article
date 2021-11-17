@@ -1,0 +1,74 @@
+
+  <h1>INSCRIPTION</h1>
+  <section class="main_section">
+    <h2><span>Créer un compte</span></h2>
+    <article class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <form id ="form" action="../controller/signupController.php" method="post" onSubmit="return validation(this)">
+      
+        <article class="form-group">
+          <?php if (isset($error)) :?>
+            <div class="error-message hidden"><?= $error ?></div>
+          <?php endif;?>
+          <?php if (isset($error1)) :?>
+            <div class="error-message hidden"><?= $error1 ?></div>
+          <?php endif;?>
+          <?php if (isset($er_nomform)) :?>
+            <div class="error-message hidden"><?= $er_nomform ?></div>
+          <?php endif;?>
+          <?php if (isset($er_nomform4)) :?>
+            <div class="error-message hidden"><?= $er_nomform4 ?></div>
+          <?php endif;?>
+          <label for="first_name">Prénom</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" data-name="Prénom" value ="<?=$prenomcontrol?>" data-required>
+        </article>
+
+        <article class="form-group">
+          <?php if (isset($er_nomform5)) :?>
+            <div class="error-message hidden"><?= $er_nomform5 ?></div>
+          <?php elseif (isset($er_nomform2)) :?>
+            <div class="error-message hidden"><?= $er_nomform2 ?></div>
+          <?php endif;?>
+          <label for="last_name">Nom</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" data-name="Nom" value ="<?=$nomcontrol?>" data-required>
+        </article>
+
+        <article class="form-group">
+          <?php if (isset($er_nom)) :?>
+            <div class="error-message hidden"><?= $er_nom ?></div>
+          <?php endif;?>
+          <?php if (isset($er_nom1)) :?>
+            <div class="error-message hidden"><?= $er_nom1 ?></div>
+          <?php endif;?>
+          <label for="last_name">Pseudo</label>
+          <input type="text" class="form-control" id="pseudo" name="pseudo" data-name="Pseudo" data-required>
+        </article>
+
+        <article class="form-group">
+          <?php if (isset($er_mail)) :?>
+            <div class="error-message hidden"><?= $er_mail ?></div>
+          <?php endif;?>
+          <?php if (isset($er_mail1)) :?>
+            <div class="error-message hidden"><?= $er_mail1 ?></div>
+          <?php endif;?>
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email"  data-name="Email" data-type="email" data-required>
+        </article>
+
+        <article class="form-group">
+          <?php if (isset($er_mdp)) :?>
+            <div class="error-message hidden"><?= $er_mdp ?></div>
+          <?php endif;?>
+          <label for="password">Mot de passe</label>
+          <input type="password" class="form-control" id="password" name="password" data-name="Mot de passe" data-type="password" data-required>
+        </article>
+
+        <article class="form-group">
+          <label for="verif_password">Vérifiez votre mot de passe</label>
+          <input type="password" class="form-control" id="verif_password" name="verif_password" data-name="Vérification de mot de passe" data-verif="password">
+        </article>
+      
+        <button type="submit" class="btn btn-primary">Créer le compte</button>
+      </form>
+    </article>
+    <a class="accueil" href="../index.php">Retour au Forum</a>
+  </section>

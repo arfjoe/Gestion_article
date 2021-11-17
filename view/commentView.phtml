@@ -1,0 +1,85 @@
+<section class="d-flex flex-column">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="#"><?= $donnees['name'] ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $donnees['title'] ?></li>
+        </ol>
+    </nav>
+    <article class="flex-grow-1 d-lg-flex align-items-stretch">
+    <div class="col-lg-7 p-5">
+        <header class="jumbotron post-header">
+            <h2>
+                <?=($donnees['title']) ?>
+            </h2>
+            <hr class="my-4">
+            <p class="m-0">Dans la catégorie : <span class="badge badge-dark"><?= $donnees['name'] ?></span></p>
+            <small>
+                Rédigé par
+                <?= $donnees['firstname'] ?>
+                <?= $donnees['lastname'] ?>
+                le
+                <time>
+                    <?= $donnees['created_at_fr']; ?>
+                </time>
+            </small>
+            <div class="px-5">
+            <?= nl2br($donnees['content']); ?>
+            </div>
+        </header>
+        <a class="accueil" href="../index.php">Retour à l'accueil</a>
+    </div>
+    <aside class="col-lg-5 p-5 bg-secondary text-light">
+        <h2 class="h4 text-center">
+            Liste des commentaires
+            <?php if (count($donnees2) > 0) : ?>
+                <small>(<?= count($donnees2); ?>)</small>
+            <?php endif; ?>
+        </h2>
+        <?php if (!empty($donnees2)) : ?>
+            <ul class="list-group text-white">
+                <?php foreach ($donnees2 as $comment) : ?>
+                    <li class="list-group-item bg-dark">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        Rédigé par
+                        <strong><?= $comment['nickname'] ?></strong>
+                        <?php if (!empty($_SESSION) and array_key_exists('user', $_SESSION) and $_SESSION['user']['admin'] || $_SESSION['user']['pseudo']==$comment["nickname"]): ?>
+                        <a  href="../model/deleteModel.php?table=comments&id=<?= intval($comment['id']) ?>"><i class="fa fa-trash"></i></a>
+                        <?php endif; ?>                
+                        <?php if (!empty($_SESSION) and array_key_exists('user', $_SESSION) and $_SESSION['user']['pseudo']==$comment["nickname"]): ?>
+                        <a  href="../controller/editCommentController.php?id=<?= intval($comment['id']) ?>"><i class="fa fa-edit"></i></a>
+                        <?php endif; ?>
+                        <div class="py-2"><?= $comment['content'] ?></div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else : ?>
+            <p>Cet article n'a pas encore de commentaire</p>
+        <?php endif; ?>
+        <?php if (empty($_SESSION)) : ?>
+                <p>Vous devez être inscrit et connecté pour pouvoir poster un commentaire</p>
+        <?php endif; ?>
+        <?php if (!empty($_SESSION)) : ?>
+        <article class="formAdmin">
+                <h3>Ajout d'un Commentaire</h3>
+                <form action="../controller/commentController.php?id=<?= $donnees['id']; ?>" method="post">
+                <?php if (isset($er_nomform)) :?>
+                    <div class="error-message hidden"><?= $er_nomform ?></div>
+                <?php endif;?>
+                <?php if (isset($er_nomform2)) :?>
+                    <div class="error-message hidden"><?= $er_nomform2 ?></div>
+                <?php endif;?>
+                <?php if (isset($er_nomform1)) :?>
+                    <div class="error-message hidden"><?= $er_nomform1 ?></div>
+                <?php endif;?>
+                    <label for="content">Contenu</label>  <textarea name="content" class="content" ></textarea>
+                    <input id="buttonAdmin" type="submit" value="Envoyer" />
+                </form>
+            </article>
+        <?php endif; ?>    
+    </aside>
+</article> 
+</section>
+
+
+

@@ -1,0 +1,31 @@
+<article id="article" class="add_posts formAdmin">
+    <h3>Ajout d'un Article pour le Blog</h3>
+    <form action="../controller/addArticleController.php" method="post">
+        <?php if (isset($error_id)) :?>
+            <div class="error-message hidden"><?= $error_id ?></div>
+        <?php endif;?>
+        <?php if (isset($er_nomform)) :?>
+            <div class="error-message hidden"><?= $er_nomform ?></div>
+        <?php endif;?>
+        <?php if (isset($er_nomform1)) :?>
+            <div class="error-message hidden"><?= $er_nomform1 ?></div>
+        <?php endif;?>
+        <label for="author">Titre</label> <input type="text" name="title" id="author" value ="<?=$titlecontrol?>">
+        <?php if (isset($er_nomform2)) :?>
+            <div class="error-message hidden"><?= $er_nomform2 ?></div>
+        <?php endif;?>
+        <?php if (isset($er_nomform3)) :?>
+            <div class="error-message hidden"><?= $er_nomform3 ?></div>
+        <?php endif;?>
+        <label for="content">Contenu</label>  <textarea name="content" class="content" id="content" value ="<?=$subjectcontrol?>"></textarea>
+        <p>
+        <label for="category">Catégorie de l'article</label><br />
+            <select name="category" id="categori">
+            <?php foreach ($donnees3 as $value3) : ?>    
+                <option value="<?= ($value3['id']) ?>"  <?= $value3['id'] == $category ? 'selected' : ''  ?>><?= ($value3['name']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        </p>
+         <input id="buttonAdmin" type="submit" value="Envoyer" />
+    </form>
+</article>

@@ -1,0 +1,41 @@
+<article>
+    <h1>Accueil du blog</h1>
+</article>
+<section id="haut">
+    <article class="connect">
+        <?php if (empty($_SESSION)) : ?>	
+			<a href="../controller/loginController.php" class="ui button">CONNEXION</a>
+			<a href="../controller/signupController.php" class="ui primary button">INSCRIPTION</a>
+		<?php endif; ?>
+		
+        <?php if (!empty($_SESSION)) : ?>
+			<p id="hello">Hello <?= ucfirst($_SESSION['user']['pseudo']) ?></p>
+			<a href="../controller/logoutController.php?id=<?= $_SESSION['user']['id'] ?>" class="ui red button">DECONNEXION</a>
+        	<a href="../controller/compteController.php?id=<?= $_SESSION['user']['id'] ?>" class="ui primary button">Mon Compte</a>
+		<?php endif; ?>
+    </article>
+</section>
+
+<section class="subject">	
+	<?php foreach ($donnees as $value) : ?>
+	<article class="news">
+        <div class="head_article">
+            <h3><?= $value['title'] ?></h3>
+            <p>Catégorie : <?= $value["name"]; ?></p>
+        </div>
+        <div class="content_article">
+            <p><?=  nl2br($value['content']); ?></p>
+            <p><em><a href="../controller/commentController.php?id=<?= $value['id']; ?>"><i class="fas fa-arrow-right"></i>Lire la suite</a></em></p>
+        </div>
+        <div class="foot_article">
+            <p>Rédigé par <?= $value["firstname"]; ?> <?= $value["lastname"]; ?> le <?= $value["created_at_fr"]; ?></p>
+            <div class="deleteupdate">
+			<?php if (!empty($_SESSION) and array_key_exists('user', $_SESSION) and $_SESSION['user']['admin']) : ?>
+				<a id="remove" href="../model/deleteModel.php?table=posts&id=<?= intval($value['id']) ?>&table=posts"><i class="fa fa-trash"></i>supprimer</a>
+				<a id="edit" href="../controller/editSubjectController.php?id=<?= intval($value['id']) ?>"><i class="fa fa-edit"></i>éditer</a>
+			<?php endif; ?>
+		</div>
+        </div> 
+	</article>
+	<?php endforeach; ?>     
+</section>

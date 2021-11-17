@@ -1,0 +1,29 @@
+  <h1>CONNEXION</h1>
+  <section class="main_section">
+    <h2><span>Se connecter</span></h2>
+    <article class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <form method="post" action="../controller/loginController.php">
+        <?php if (isset($good)) :?>
+          <div class="error-message hidden"><?= $good ?></div>
+        <?php endif;?>
+        <?php if (isset($error)) :?>
+          <div class="error-message hidden"><?= $error ?></div>
+        <?php endif;?>
+        <article class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" data-name="Email" data-type="email" value ="<?=$email?>" required>
+        </article>
+        <?php if (isset($error1)) :?>
+          <div class="error-message hidden"><?= $error1 ?></div>
+        <?php endif;?>
+        <article class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" class="form-control" id="password" name="password" data-name="Mot de passe" data-type="password"  required>
+        </article>
+
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+      </form>
+      <p class="inscrit">Pas encore inscrit? C'est <b><a href="../controller/signupController.php">ici</a></b> que ça ce passe</p>
+    </article>
+    <a class="accueil" href="../index.php">Retour au Forum</a>
+  </section>

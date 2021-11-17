@@ -1,0 +1,59 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+?>
+  <section class="main_section">
+    <h2><span>Compte de : </span><?= ucfirst($_SESSION['user']['pseudo']) ?></h2>
+    <article class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+      <form action="../controller/compteController.php?id=<?= $donnees['id']; ?>" method="post">
+        <input type="hidden" name="userId" value="<?= intval($donnees['id']) ?>">
+        <?php if (isset($error)) :?>
+          <div class="error-message hidden"><?= $error ?></div>
+        <?php endif;?>
+        <?php if (isset($error1)) :?>
+          <div class="error-message hidden"><?= $error1 ?></div>
+        <?php endif;?>
+        <?php if (isset($er_nomform)) :?>
+          <div class="error-message hidden"><?= $er_nomform ?></div>
+        <?php endif;?>
+        <?php if (isset($er_nomform4)) :?>
+          <div class="error-message hidden"><?= $er_nomform4 ?></div>
+        <?php endif;?>
+        <label for="first_name">Prénom</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" value="<?= $donnees['firstname'] ?>" data-name="Prénom" data-required>
+                
+                
+        <?php if (isset($er_nomform5)) :?>
+          <div class="error-message hidden"><?= $er_nomform5 ?></div>
+        <?php elseif (isset($er_nomform2)) :?>
+          <div class="error-message hidden"><?= $er_nomform2 ?></div>
+        <?php endif;?>
+        <label for="last_name">Nom</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" value="<?= $donnees['lastname'] ?>" data-name="Nom" data-required>
+               
+                
+        <?php if (isset($er_nom)) :?>
+          <div class="error-message hidden"><?= $er_nom ?></div>
+        <?php endif;?>
+        <?php if (isset($er_nom1)) :?>
+          <div class="error-message hidden"><?= $er_nom1 ?></div>
+        <?php endif;?>
+        <label for="last_name">Pseudo</label>
+        <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?= $donnees['pseudo'] ?>" data-name="Pseudo" data-required>
+               
+                
+        <?php if (isset($er_mail)) :?>
+          <div class="error-message hidden"><?= $er_mail ?></div>
+        <?php endif;?>
+        <?php if (isset($er_mail1)) :?>
+          <div class="error-message hidden"><?= $er_mail1 ?></div>
+        <?php endif;?>
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email"  value="<?= $donnees['email'] ?>" data-name="Email" data-type="email" data-required>
+               
+        <button class="ui button" type="submit">Enregistrer</button>
+        <a id="annuler" class="negative ui button" href="../index.php">Annuler</a>
+      </form>
+    </article>
+  </section>
