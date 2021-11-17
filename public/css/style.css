@@ -1,0 +1,623 @@
+*
+{
+    box-sizing: border-box;
+}
+
+html 
+{
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+@font-face 
+{
+    font-family: 'DeathtoMetal';
+    src: url('DeathtoMetal.ttf') format('truetype');
+}
+
+body 
+{
+    font-size: 1.8rem;
+    line-height: 2;
+	background-image: url("../image/436396.jpg");
+	background-attachment: fixed;
+	margin: auto;
+	overflow-y: scroll;
+}
+
+.clear
+{
+	clear: both;
+}
+
+h1
+{
+	color: black;
+	font-family: 'DeathtoMetal';
+	font-size: 14vh;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+h2
+{
+	font-family: 'Metal Mania', cursive;
+	text-align: center;
+	font-size: 5vh;
+	color: brown;
+	margin: 5vh 0;
+}
+
+h3,.menu h2,.sous-menu h2
+{
+	color: black;
+	font-family: 'Metal Mania', cursive;
+	font-size: 5vh;
+}
+
+a 
+{
+	color: black;
+	text-decoration: none;
+}
+
+p
+{
+	font-size: 1.5vh;
+	margin:0;
+}
+
+/*******HEADER********/
+
+/***MENU MOBIL***/
+
+header section
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dekstop, .display
+{
+    display: none;
+}
+.menu 
+{
+    display: none;
+    flex-basis: 100%;
+    list-style: none;
+    overflow: hidden;
+    padding: 0 2em;
+    transition: margin .5s ease-in-out, max-height .5s ease-in-out, opacity .3s .1s ease-in-out;
+}
+
+.menu-checkbox:checked ~ .menu 
+{
+    display: block;
+}
+
+.menu-checkbox 
+{
+	opacity: 0;
+	position: absolute;
+	top: -1000px;
+}
+
+.menu-checkbox:focus + .menu-toggle 
+{
+    outline: #00A1A1 auto 5px;
+}
+
+.menu-toggle 
+{
+    padding: .5em 1em;
+    font-family: 'Bellota', cursive;
+    color: rgb(158, 124, 183);
+    font-size: 6vh;
+}
+
+.nav-wrapper 
+{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.menu-checkbox:checked + .menu 
+{
+    margin: 1em 0;
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu li 
+{
+    border-bottom: 1px solid #eee;
+}
+
+.menu li a 
+{
+    display: inline-block;
+    font-family: 'Bellota', cursive;
+    color: rgb(158, 124, 183);
+}
+
+.sous-menu
+{
+    display: none;
+    background-color: white;
+    padding-left: 5vh;
+}
+
+.hover:hover .sous-menu, .sous-menu:hover
+{
+    display:block;
+}
+
+.sous-menu ul
+{
+    display: flex;
+    flex-direction: column;
+}
+
+/*******FOOTER*******/
+
+footer
+{
+	text-align: center;
+	margin: 10rem 0 2rem 0;
+}
+
+/*******MAIN*******/
+
+.inscrit
+{
+	text-align: center;
+	margin: 4rem 0;
+}
+
+b a
+{
+	color: rgb(139, 47, 47);
+}
+
+/******TABLETTE + MOBILE******/
+
+@media all and (max-width: 1060px)
+{
+	.content h1,
+	header h1
+	{
+		font-size: 8vh;
+	}
+
+	.dekstop, table
+	{
+		display: none;
+	}
+
+	.menu li 
+	{
+		border-bottom: 1px solid #eee;
+		color: blanchedalmond;
+		font-family: 'Metal Mania', cursive;
+		font-size: 5vh;
+	}
+}
+
+/*******TABLETTE******/
+
+@media all and (max-width: 1060px) and (min-width: 768px)
+{
+
+}
+
+/********DESKTOP*******/
+
+@media all and (min-width: 1060px)
+{
+
+	main
+	{
+		margin-top: 5vh;
+	}
+
+	.main-navigation, .displayresp
+	{
+		display: none;
+    }
+
+    .dekstop, .display
+    {
+        display: block;
+    }
+    
+    nav
+    {
+        width: 100%;
+        margin-bottom: 5vh;
+    }
+
+    #menu ul
+    {
+        overflow: auto;
+        display: flex;
+        justify-content: space-around;
+		list-style: none;
+		background-color: white;
+    }
+
+    .sous-menu
+    {
+        display: none;
+        position: absolute;
+        background-color: white;
+        border-top: solid rgb(158, 124, 183) 1px;
+        padding-left: 0;
+        padding-right: 1vh;
+    }
+
+    .hover:hover .sous-menu, .sous-menu:hover
+    {
+        display:block;
+    }
+
+    .sous-menu ul
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    legend
+    {
+        font-size: 3vh;
+        max-width: 15%;
+    }
+
+}
+
+/********* FORMULAIRES ********/
+
+.form-control, .btn 
+{
+	font-size: 1.6rem;
+}
+.error-message
+{
+    /* structure */
+    margin: 2em 0;
+    padding: 0.5em 1em;
+
+    /*  presentation */ 
+    background-color: rgba(255, 102, 51, 0.5);
+    border: 2px solid #FF3300;
+    border-radius: 6px;
+    color: white;
+}
+.error-message h3
+{
+    /* structure */
+    margin-top: 0;
+
+    /* presentation */
+    color: #FF3300;
+}
+.error-message h3 em
+{
+    color: red;
+    font-style: normal;
+}
+
+#hello
+{
+	color:rgb(126, 40, 40);
+	font-size: 4vh;
+}
+
+#customer_address 
+{
+	text-align: right;
+}
+
+label
+{
+	color: black;
+}
+
+.accueil
+{
+	color:blanchedalmond;
+	background-image: radial-gradient(rgb(0, 0, 0), rgb(255, 255, 255));
+	border-color: rgb(63, 54, 43);
+	border-radius: 100%;
+	padding: 1rem;
+	margin: 6vh auto;
+}
+
+/********** MINI FORUM ********/
+.connect
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	font-family: 'Metal Mania', cursive;
+	font-size: 3rem;
+}
+
+.deleteupdate
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+#remove, #edit
+{
+	color: red;
+}
+
+.subject
+{
+	margin: 8vh auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.news p
+{
+	margin-top:0px;
+}
+.news
+{
+    max-width: 30%;
+	margin: 1vh;
+	border: 3px double blanchedalmond;
+}
+
+.news a
+{
+    text-decoration: none;
+	color: rgb(174, 0, 255);
+	text-shadow:0 0 5px black;
+}
+.content_article{
+	background-color: white;
+	width: 100%;
+}
+.head_article{
+	background-color: #c1a500;
+	color: black;
+	width: 100%;
+}
+.head_article p{
+	color: black;
+}
+.head_article h3
+{
+	text-align: center;
+    font-size:3vh;
+	margin:0;
+	color: black;
+}
+.content_article p{
+	color:black;
+	padding:1vh;
+}
+.foot_article{
+	background-color: black;
+	padding:1vh;
+	width: 100%;
+} 
+.foot_article p{
+	color: blanchedalmond;
+}
+.comment_page{
+	display: flex;
+}
+.comment_page .subject{
+	max-width:60%;
+}
+
+.menu_admin{
+	display: flex;
+	flex-direction: column;
+}
+.menu_admin a{
+	color: blanchedalmond;
+}
+#authors,#posts,#category{
+	display:none;
+}
+#buttonAdmin
+{
+	margin-top: 2vh;
+}
+
+.formAdmin
+{
+	margin-bottom: 5vh;
+}
+	
+.formAdmin h3
+{
+	text-align: center;
+	color: brown;
+	margin-bottom: 5vh;	
+}
+
+.formAdmin form
+{
+	display: flex;
+	flex-direction: column;
+}
+#open{
+	color: blanchedalmond;
+	padding: 0.5em 1em;
+	background-image: radial-gradient(rgb(0, 0, 0), rgb(255, 255, 255));
+    border-color: rgb(63, 54, 43);
+	margin: 1em;
+}
+#article{
+	width:80%;
+	margin: auto;
+}
+th, td
+{
+	color: black;
+	border: 4px solid black;
+	padding: 1vh;
+	text-align: center;
+}
+
+th
+{
+	font-weight: bold;
+	color: brown;
+}
+
+table
+{
+	border-collapse: collapse;
+	margin: auto;
+}
+
+
+.utilisateur
+{
+	border-bottom: solid 2px brown;
+	margin-bottom: 3vh;
+}
+caption{
+	color: brown;
+}
+.comment
+{
+	margin: 8vh auto;
+}
+
+.comment article
+{
+	margin:5vh 0;
+	background-color: blanchedalmond;
+}
+
+.postwhen
+{
+	padding: 2vh;
+	background-color: black;
+	font-size: 1.8vh;
+}
+
+.postwhen a
+{
+	margin: 0 3vh;
+}
+
+.comment article p b
+{
+	color: brown;
+}
+
+#delUp
+{
+	display: flex;
+	flex-direction: row;
+}
+
+#comment
+{
+	margin-left: 2vh;
+	color: black;
+}
+
+legend
+{
+	color: black;
+	font-family: 'Metal Mania', cursive;
+	font-size: 2vh;
+	margin-left: 0.5vh;
+}
+
+#annuler
+{
+	color: black;
+	padding: 0.2vh 0.6vh;
+	background-color: white;
+	border: 0.5px solid gray;
+	font-weight: bold;
+}
+
+/******** RETOUR EN HAUT DE PAGE ********/
+
+a#cRetour{
+	border-radius:3px;
+	padding:10px;
+	font-size:15px;
+	text-align:center;
+	color:#fff;
+	background:rgba(0, 0, 0, 0.25);
+	position:fixed;
+	right:20px;
+	opacity:1;
+	z-index:99999;
+	transition:all ease-in 0.2s;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	text-decoration: none;
+  }
+  a#cRetour:before{ content: "\25b2"; }
+  a#cRetour:hover{
+	background:rgba(0, 0, 0, 1);
+	transition:all ease-in 0.2s;
+  }
+  a#cRetour.cInvisible{
+	bottom:-35px;
+	opacity:0;
+	transition:all ease-in 0.5s;
+  }
+  
+  a#cRetour.cVisible{
+	bottom:20px;
+	opacity:1;
+  }
+
+  
+/* *****************************************************************
+MODAL
+***************************************************************** */
+
+/* .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+}
+.overlay.visible {
+	display: block;
+}
+.modal {
+	position: absolute;
+	top: 10vh;
+	left: 25vw;
+	width: 50vw;
+	padding: 2em;
+	height:auto;
+	display:block;
+	background-color: #fff;
+	box-shadow: 0 1em 2em rgba(0,0,0,0.5);
+	transition: all 2s;
+	transform: translateY(-100vh);
+	background-image: url("../image/480092_1920_1200.jpg");
+}
+.modal.visible {
+	transform: translateY(0);
+	transition: all 0.2s;
+}
+ */
+
+	
+
